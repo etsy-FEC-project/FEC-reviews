@@ -2,23 +2,23 @@ CREATE DATABASE IF NOT EXISTS etsycutioner;
 
 USE etsycutioner;
 
-CREATE TABLE people (
-  id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS people (
+  id INT NOT NULL AUTO_INCREMENT,
   name TEXT NOT NULL,
   photo TEXT,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE shops (
-  id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS shops (
+  id INT NOT NULL AUTO_INCREMENT,
   name TEXT NOT NULL,
-  review_count MEDIUMINT,
-  avg_stars TINYINT,
+  reviews_count INT,
+  avg_stars_out_of_100 TINYINT,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE listings (
-  id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS listings (
+  id INT NOT NULL AUTO_INCREMENT,
   name TEXT NOT NULL,
   photo TEXT,
   shop INT NOT NULL,
@@ -27,13 +27,15 @@ CREATE TABLE listings (
   FOREIGN KEY (shop) REFERENCES shops(id)
 );
 
-CREATE TABLE reviews (
-  id INT NOT NULL,
+ALTER TABLE listings AUTO_INCREMENT=666666666;
+
+CREATE TABLE IF NOT EXISTS reviews (
+  id INT NOT NULL AUTO_INCREMENT,
   person INT NOT NULL,
   shop INT NOT NULL,
   listing INT NOT NULL,
   body TEXT NOT NULL,
-  date DATE NOT NULL,
+  date DATETIME NOT NULL,
   stars TINYINT NOT NULL,
 
   PRIMARY KEY (id),
